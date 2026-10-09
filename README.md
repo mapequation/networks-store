@@ -48,6 +48,19 @@ removed. No passenger threshold we tried on the trigram file (legs in, out or
 both, itinerary origins, transfers) selects exactly these 183, so the list is
 defined by the file.
 
+The trigram file can be rebuilt from the public DB1B coupons almost, but not
+exactly. `networks.paths.load("db1b-coupon", year=2011, quarter=q)` for
+`q = 1, 2, 3` returns passenger-weighted itineraries. Turning each one into its
+triples, plus one self-memory trigram per itinerary, gives the same 464 airports
+and the same totals to within 0.0005%: total weight 44,823,463 against
+44,823,256, and 19,414,511 path-start passengers against 19,415,369. (Weighted
+by itinerary count instead of passengers, the totals are far off.) Still, 6,601
+trigrams differ, and restricted to the 183 airports that makes 5,786 of 264,989
+`air30k.net` links, moving 0.11% of the weight. Open-jaw gaps are not the cause:
+the 2011 Q1–Q3 coupons contain none. The likeliest causes are later BTS
+revisions or an unrecorded cleaning step. So `air30k.net` is kept here as the
+exact file.
+
 ### `synthetic/overlapping-memory/`
 
 Second-order networks with planted overlapping communities, from Andrea
