@@ -5,8 +5,9 @@ benchmark inputs that cannot be regenerated, and processed versions of public
 data that we cannot reproduce from the raw data. Everything with a public source
 is fetched from that source instead, through the
 [`mapequation-networks`](https://github.com/mapequation/networks) package. That
-package is also where generators live, so a synthetic network appears here only
-when its generator cannot reproduce it.
+package is also where generators live, so synthetic networks are not stored
+here: the overlapping-community memory networks used by the Infomap benchmarks,
+for example, come from `networks.generate.overlapping_memory_benchmark(om, E, seed=1)`.
 
 Files are stored as they were used, byte for byte. `SHA256SUMS` pins every file;
 check a fetched copy with `shasum -a 256 -c SHA256SUMS`.
@@ -60,24 +61,3 @@ trigrams differ, and restricted to the 183 airports that makes 5,786 of 264,989
 the 2011 Q1–Q3 coupons contain none. The likeliest causes are later BTS
 revisions or an unrecorded cleaning step. So `air30k.net` is kept here as the
 exact file.
-
-### `synthetic/overlapping-memory/`
-
-Second-order networks with planted overlapping communities, from Andrea
-Lancichinetti's trigram sampler in the higher-order regularization project:
-`N = 256` physical nodes, communities of `nc = 64`, every node in `om` of them,
-`E` trigrams, `mu = 0.1`. These five files were made before the sampler was
-seeded, so they cannot be regenerated. Every other member of the family comes
-from `networks.generate.overlapping_memory_benchmark(om, E, seed=1)`, which
-reproduces the seeded files byte for byte.
-
-| file | state nodes |
-|---|--:|
-| `network_N256_om2_nc64_E50000_mu10_sample1.net` | 28,203 |
-| `network_N256_om4_nc64_E100000_mu10_sample1.net` | 45,394 |
-| `network_N256_om5_nc64_E100000_mu10_sample1.net` | 50,133 |
-| `network_N256_om6_nc64_E100000_mu10_sample1.net` | 53,860 |
-| `network_N256_om8_nc64_E100000_mu10_sample1.net` | 58,505 |
-
-Each `network_<stem>.net` has a `planted_partition_<stem>.clu` with lines
-`state_id module`, modules from 0. Run them directed (`infomap -d`).
