@@ -12,8 +12,8 @@ for example, come from `networks.generate.overlapping_memory_benchmark(om, E, se
 Files are stored as they were used, byte for byte. `SHA256SUMS` pins every file;
 check a fetched copy with `shasum -a 256 -c SHA256SUMS`.
 
-The repository is private: some of these files are derived from third-party data
-whose redistribution terms we have not checked.
+Some of these files are derived from third-party data; each section below names
+the source as far as it is known.
 
 ## Contents
 
