@@ -38,7 +38,7 @@ and is used only for the teleportation weights.
 | file | network | used by |
 |---|---|---|
 | `air2011/air2011-trigrams.txt` | US airline itineraries from DB1B (BTS), first three quarters of 2011: 464 airports, 335,111 trigrams, total weight 44,823,256 including the self-memory trigrams | source of `air30k.net` |
-| `air2011/air30k.net` | second-order state network on the 183 airports kept in the paper: 13,213 state nodes, 264,989 links, total weight 24,072,258 | Infomap columnar benchmark: plain, `-d --regularized`, and with US-state metadata |
+| `air2011/air30k.net` | second-order state network on the 183 airports kept in the paper: 13,213 state nodes, 264,989 links, total weight 24,072,258 | the paper; the Infomap columnar benchmark used it until 2026-10-10 and now rebuilds it from DB1B (below) |
 | `enron/enron-trigrams.txt` | Enron email threads: 146 users (144 present), 2,948 trigrams | — |
 | `taxi/taxi-trigrams.txt` | Uber taxi trajectories in San Francisco on a hexagonal grid: 416 cells, 8,396 trigrams | — |
 
@@ -61,3 +61,10 @@ trigrams differ, and restricted to the 183 airports that makes 5,786 of 264,989
 the 2011 Q1–Q3 coupons contain none. The likeliest causes are later BTS
 revisions or an unrecorded cleaning step. So `air30k.net` is kept here as the
 exact file.
+
+The Infomap columnar benchmark uses the rebuild anyway. It is reproducible from
+public data, and on the benchmark's three configurations it gives codelengths
+within 0.1% and run times within 4% of `air30k.net`, with partitions as close to
+the original's as two seeds of the same network are to each other. The rebuild is
+in Infomap's `columnar_wip/fetch-benchmark-networks.py` (mapequation/infomap#1136),
+with the 183 airports listed by IATA code in `columnar_wip/air30k-airports.tsv`.
