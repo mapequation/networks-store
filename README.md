@@ -21,11 +21,17 @@ the source as far as it is known.
 
 | file | network | used by |
 |---|---|---|
-| `netscicoauthor2010.net` | co-authorship among network scientists, 2010; 552 nodes, 1,318 weighted undirected edges (weights like 1/3) | Infomap columnar benchmark, undirected |
-| `politicalblogs.net` | **Swedish** political blogs (party tags such as SD, MP in the labels); 1,046 nodes, 13,195 weighted links. Not the Adamic–Glance `polblogs` | Infomap columnar benchmark, run `-d` |
-| `science2001.net` | journal citation network, 2001; 7,170 journals with node weights, 738,282 weighted links | Infomap columnar benchmark, run `-d` and `-d --preferred-number-of-modules 25` |
+| `netscicoauthor2010.net` | co-authorship among network scientists, 2010; 552 nodes, 1,318 weighted undirected edges (weights like 1/3) | the Infomap columnar benchmark until 2026-10-10; it now uses netzschleuder's `netscience` |
 
-Where these three came from is not yet documented here.
+Where this file came from is not yet documented here. Its authors overlap
+netzschleuder's `netscience` (2006): 422 of its 546 distinct names appear
+there, so it is a later compilation, not a subset.
+
+Two other first-order files were hosted here until 2026-10-10 and have been
+removed from the history: a journal citation network derived from licensed
+Journal Citation Reports data, and a network of Swedish political blogs whose
+labels name individuals with their party. The Infomap benchmark replaced them
+with netzschleuder's `word_assoc` and `polblogs`.
 
 ### `memory/`
 
